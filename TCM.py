@@ -13,7 +13,7 @@ import ast
 File_Execution = True # True if parameters to be collected from Setting.csv file.
 File_name = 'Experiment_Results.csv'
 
-q = 1 # impotance to battery degradation. higher value is higher importance
+q = 1 # importance to battery degradation. higher value is higher importance
 
 RR = 1 # print("------------------  Error_Introduced -----------------------") # Stable , Reccurance, Error_Introduced
 limit_charge = 1 # 1 if charge in last charging period is less than charge required for priority task 0 otherwise
