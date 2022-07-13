@@ -18,7 +18,8 @@ Following are the important packages that are required to execute the TCM.py and
 
 This repository contains the proposed TCM algorithm and other baselines MINLP, MID_DT and MIN_DTC explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. 
 
-**To create different scenarios** change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Each row in the CSV(eg. test.csv) is a different experiment setup. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
+### Creating multiple test scenarios:
+To create different scenarios change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Each row in the CSV(eg. test.csv) is a different experiment setup. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
 
 Whenever a script reads initial parameters from the CSV file and update the results in the CSV file, it also sets the respective execution value to 1 (as shown in  column CP for MINLP in the screenshot). This is done to avoid re-running the experiments that already have a solution. If there is a need to resolve the solution then delete the respective column or the respective cell value. 
 ![This is an image](https://github.com/aksharc2/Towards-High-Quality-Battery-Life-for-Autonomous-Mobile-Robot-Fleets/blob/main/MINLP.PNG)
@@ -34,7 +35,7 @@ When the `File_Execution = False`, the program reads the initial conditions from
 
 **TCM** is the proposed greedy algorithm.
 
-### Testing TCM to modeling erros:
+### Testing TCM to modeling errors:
 To test TCM to modeling erros, 
 1. Set `Error_introduced` to `1` and provide a minimum (error_lower_limit) and maximum (error_upper_limit) modeling error percentage in `experimentSetup.py`. This will create a random error within the given range in each time period, and save it in the CSV file.
 2. In `TCM.py` set `Error_introduced` to `1`. By default TCM dynamically updates the solution in each time period, therefore it handels any modeling erros it encounters. 
