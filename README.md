@@ -17,19 +17,6 @@ Following are the important packages that are required to execute the TCM.py and
 
 
 This repository contains the proposed TCM algorithm and other baselines MINLP, MID_DT and MIN_DTC explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. 
-
-### Creating multiple test scenarios:
-To create different scenarios change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Each row in the CSV(eg. test.csv) is a different experiment setup. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
-
-
-### Executing scripts with different test scenarios:
-1. Update the `File_name` variable with the CSV file name and set `File_Execution = True`. This will make the script to get the initial paramters from the CSV file and write the results to the CSV file. 
-2. When a script gets an experiment result and updates it to the CSV file, it also sets the respective execution value to 1 (as shown in  column CP for MINLP in the screenshot). This is done to avoid re-running the experiments that already have a solution. ![This is an image](https://github.com/aksharc2/Towards-High-Quality-Battery-Life-for-Autonomous-Mobile-Robot-Fleets/blob/main/MINLP.PNG)
-3. If there is a need to rerun all the experiment then delete the respective column or if there is a need to solve a particular experiment again then delete the respective cell value(eg., in the above figure if you want to rerun the entire experements for MINLP again then delete column CP).
-
-
-When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
-
 ### Baselines:
 **MIN_DTC** is an MINLP model that considers maximizing the task allocation while ensuring that the energy level remains within the minimum (EDOD ) and maximum (Emax) battery threshold.
  
@@ -37,7 +24,20 @@ When the `File_Execution = False`, the program reads the initial conditions from
 
 **MINLP** is a simple MINLP model for the proposed approach, which persorms task allocation considering the battery degradation cost.
 
-**TCM** is the proposed greedy algorithm.
+**TCM** is the proposed greedy algorithm. 
+
+**TCM_Static** is a greedy algorithm, which provides a solution once in the begnining of the working period, hence this baseline is not able to handel any modeling errors that it encounters. 
+
+### Creating multiple test scenarios:
+To create different scenarios change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Each row in the CSV(eg. test.csv) is a different experiment setup. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
+
+
+### Executing scripts:
+1. Update the `File_name` variable with the CSV file name and set `File_Execution = True`. This will make the script to get the initial paramters from the CSV file and write the results to the CSV file. 
+2. When a script gets an experiment result and updates it to the CSV file, it also sets the respective execution value to 1 (as shown in  column CP for MINLP in the screenshot). This is done to avoid re-running the experiments that already have a solution. ![This is an image](https://github.com/aksharc2/Towards-High-Quality-Battery-Life-for-Autonomous-Mobile-Robot-Fleets/blob/main/MINLP.PNG)
+3. If there is a need to rerun all the experiment then delete the respective column or if there is a need to solve a particular experiment again then delete the respective cell value(eg., in the above figure if you want to rerun the entire experements for MINLP again then delete column for MINLP).
+4. When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. You can change the parameters in the Initial Condition function of the respective script. 
+
 
 ### Testing TCM to modeling errors:
 To test TCM to modeling erros, 
