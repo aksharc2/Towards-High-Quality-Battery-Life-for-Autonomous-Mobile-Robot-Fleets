@@ -1,6 +1,6 @@
 **T**ask and **C**harging schedule **M**anager is a combined task and charging scheduler.
 
-This repository contains the proposed TCM algorithm, INLP solver and other baselines explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters for the experiment setups. 
+This repository contains the proposed TCM algorithm, MINLP solver and other baselines explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for the experiment setups. 
 
 
 Following are the important packages that are required to execute the TCM.py and MINLP.py files:
