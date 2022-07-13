@@ -9,7 +9,7 @@ Following are the important packages that are required to execute the TCM.py and
 | [numpy](https://numpy.org/install/)  | `pip install numpy`  |   
 | [matplotlib](https://matplotlib.org/stable/users/installing/index.html) | `python -m pip install -U matplotlib`|  
 | [time](https://pypi.org/project/times/) | `pip install times`|  
-| [pandas](https://pypi.org/project/times/) | `pip install pandas`|  
+| [pandas](https://pandas.pydata.org/docs/getting_started/install.html) | `pip install pandas`|  
 | [math](https://pypi.org/project/python-math/) | `pip install python-math` |
 
 
