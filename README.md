@@ -17,3 +17,12 @@ Following are the important packages that are required to execute the TCM.py and
 To save the output of the TCM algorithm and MINLP in a CSV file set `File_Execution = True`, and the Experiment_Results.csv **must** be in the same folder. When the `File_Execution = False`, the program reads the initial conditions from `TCM_Optimizer_Initial_Conditions()` and `TCM_Algorithm_Initial_Conditions()` function in MINLP and TCM, respectively. 
 
 The Experiment_Results.csv contains all the variable that can be changed, and the result from the TCM algorithm and MINLP will get saved in the .csv file. Each row in the Experiment_Results.csv is a different experiment setup. When the MINLP.py saves the results for the given experiment the `Opt_execution` is than changed to 1, simillarly, when TCM saves the result then `Alg_execution` is changed to 1.
+
+
+**MIN_DTC** is an MINLP model that considers maximizing the task allocation while ensuring that the energy level remains within the minimum (EDOD ) and maximum (Emax) battery threshold.
+ 
+**MIN_DT** is a simple MINLP model for task allocation and charging schedule that maximizes only Task Allocation.
+
+**MINLP** is a simple MINLP model for the proposed approach, which persorms task allocation considering the battery degradation cost.
+
+**TCM** is the proposed greedy algorithm.
