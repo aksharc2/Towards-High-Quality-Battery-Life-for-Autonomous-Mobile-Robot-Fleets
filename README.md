@@ -26,3 +26,5 @@ The Experiment_Results.csv contains all the variable that can be changed, and th
 **MINLP** is a simple MINLP model for the proposed approach, which persorms task allocation considering the battery degradation cost.
 
 **TCM** is the proposed greedy algorithm.
+
+**NOTE:** If the experiment setup in the .csv files already have a solution, then the program will skip those experiments. To rerun the experiment change the respecive columns of the .csv file to 0 (deleting the respective column will cause the program to find the solution of all experimental setups in the file). 
