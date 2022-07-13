@@ -18,12 +18,11 @@ Following are the important packages that are required to execute the TCM.py and
 
 This repository contains the proposed TCM algorithm and other baselines MINLP, MID_DT and MIN_DTC explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. 
 
-**To create different scenarios** change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
+**To create different scenarios** change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Each row in the CSV(eg. test.csv) is a different experiment setup. Use this file as an input by changing the `File_name` variable and set `File_Execution = True` in TCM and other baselines to get the solution of each scenario. TCM and other baselines will write their respective results to the same file. ( **note that the CSV file must be in the same folder along with other scripts** )
+
+Whenever a script takes an input from the CSV file and update the results in the CSV file, it also sets the respective execution value to 1. ![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 
 When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
-
-The Experiment_Results.csv contains all the variable that can be changed, and the result from the TCM algorithm and MINLP will get saved in the .csv file. Each row in the Experiment_Results.csv is a different experiment setup. When the MINLP.py saves the results for the given experiment the `Opt_execution` is than changed to 1, simillarly, when TCM saves the result then `Alg_execution` is changed to 1.
-
 
 **MIN_DTC** is an MINLP model that considers maximizing the task allocation while ensuring that the energy level remains within the minimum (EDOD ) and maximum (Emax) battery threshold.
  
