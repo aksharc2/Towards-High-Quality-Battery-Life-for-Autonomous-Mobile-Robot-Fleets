@@ -14,6 +14,8 @@ Following are the important packages that are required to execute the TCM.py and
 | math | `pip install python-math` |https://pypi.org/project/python-math/ |
 
 
+**Note:** to use gurobypy, Gurobi liscense is needed. This license is free for academic use, and can be obtained from there [website](https://www.gurobi.com/academia/academic-program-and-licenses/).
+
 To save the output of the TCM algorithm and MINLP in a CSV file set `File_Execution = True`, and the Experiment_Results.csv **must** be in the same folder. When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
 
 The Experiment_Results.csv contains all the variable that can be changed, and the result from the TCM algorithm and MINLP will get saved in the .csv file. Each row in the Experiment_Results.csv is a different experiment setup. When the MINLP.py saves the results for the given experiment the `Opt_execution` is than changed to 1, simillarly, when TCM saves the result then `Alg_execution` is changed to 1.
