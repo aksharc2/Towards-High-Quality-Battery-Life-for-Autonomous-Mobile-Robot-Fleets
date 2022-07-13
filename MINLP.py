@@ -15,7 +15,7 @@ import math
 
 File_Execution = True # True if parameters to be collected from Setting.csv file.
 
-Execution_File_name = 'test'+'.csv'
+File_name = 'test'+'.csv'
 
 def TCM_Optimizer_Initial_Conditions():    # Parameters created
         
@@ -80,7 +80,7 @@ def TCM_Optimizer_Initial_Conditions():    # Parameters created
     E_changeMax=(Locomotion_Power+Sensing_Power[0]+Sensing_Power[1]+2.5+0.8)*Dist_change_max/Robot_Speed # max energy spent due to changing nav task or to go to recharge
     
     
-    Setting_df=pd.read_csv(Execution_File_name)
+    Setting_df=pd.read_csv(File_name)
     Exp_no =  1 # + Setting_df.iloc[-1,0] +
     Setting_df.loc[Exp_no,"Experiment_no"] = Exp_no
     Setting_df.loc[Exp_no,"Period_duration"] = Period_duration
@@ -114,7 +114,7 @@ def TCM_Optimizer_Initial_Conditions():    # Parameters created
 
 def TCM_Initial_Conditions(Exp):     # Parameters called from file
     # Parameters called from file
-    Setting_df=pd.read_csv(Execution_File_name)
+    Setting_df=pd.read_csv(File_name)
     Exp_no = Exp
     Period_duration = Setting_df.loc[Exp_no,'Period_duration']
     Working_Period = Setting_df.loc[Exp_no,'Working_Period']
@@ -598,29 +598,27 @@ def TCM_Optimization():
     Coeff_Var=math.sqrt(1/R*(sum( (battery_degradation[i] - sum(battery_degradation) / len(battery_degradation))**2   for i in Robots)))/(sum(battery_degradation) / len(battery_degradation))*100
     max_diff=(np.max(battery_degradation)-np.min(battery_degradation))*100
     if File_Execution == True:
-        Setting_df=pd.read_csv(Execution_File_name)
-        Setting_df.loc[Exp_no,"Opt_max_diff"] = max_diff
-        Setting_df.loc[Exp_no,"Opt_Coeff_Var"] = Coeff_Var
-        Setting_df.loc[Exp_no,"Opt_Total_Downtime"] = np.sum(Task_Downtime)
-        Setting_df.loc[Exp_no,"Q_Battery_Weight"] = Q_Battery_Weight
-        Setting_df.loc[Exp_no,"q"] = q
-        Setting_df.loc[Exp_no,"Opt_total_obj_cost"] = (' %g' % obj.getValue())
-        Setting_df.loc[Exp_no,"Opt_obj1"] = ('%g' % obj1.getValue())
-        Setting_df.loc[Exp_no,"Opt_obj2"] = ('%g' % obj2.getValue())
-        Setting_df.loc[Exp_no,"Opt_Wt_obj2"] = ('%g' % W_obj2.getValue())
-        Setting_df.loc[Exp_no,"Opt_run_time"] = Optimizer_Run_Time
-        Setting_df.loc[Exp_no,"Opt_energy_effectiveness"] = Opt_Effectiveness
+        Setting_df=pd.read_csv(File_name)
+        Setting_df.loc[Exp_no,"MINLP_max_diff"] = max_diff
+        Setting_df.loc[Exp_no,"MINLP_Coeff_Var"] = Coeff_Var
+        Setting_df.loc[Exp_no,"MINLP_Total_Downtime"] = np.sum(Task_Downtime)
+        Setting_df.loc[Exp_no,"MINLP_total_obj_cost"] = (' %g' % obj.getValue())
+        Setting_df.loc[Exp_no,"MINLP_obj1"] = ('%g' % obj1.getValue())
+        Setting_df.loc[Exp_no,"MINLP_obj2"] = ('%g' % obj2.getValue())
+        Setting_df.loc[Exp_no,"MINLP_Wt_obj2"] = ('%g' % W_obj2.getValue())
+        Setting_df.loc[Exp_no,"MINLP_run_time"] = Optimizer_Run_Time
+        Setting_df.loc[Exp_no,"MINLP_energy_effectiveness"] = Opt_Effectiveness
         Setting_df.loc[Exp_no,"MINLP"] = 1
-        Setting_df.loc[Exp_no,"Opt_BD_C_Edod"] = BD_C_Edod
-        Setting_df.loc[Exp_no,"Opt_BD_C_Emax"] = BD_C_Emax
-        Setting_df.to_csv(Execution_File_name, index = False)
+        Setting_df.loc[Exp_no,"MINLP_BD_C_Edod"] = BD_C_Edod
+        Setting_df.loc[Exp_no,"MINLP_BD_C_Emax"] = BD_C_Emax
+        Setting_df.to_csv(File_name, index = False)
 
 if __name__ == '__main__':
     if File_Execution == False:
         Parameters = TCM_Optimizer_Initial_Conditions()
         TCM_Optimization()    
     else:
-        Setting_df=pd.read_csv(Execution_File_name)
+        Setting_df=pd.read_csv(File_name)
         if 'MINLP' not in Setting_df:
             Setting_df['MINLP'] = 0 
         loop = len(Setting_df)  #int(Setting_df.iloc[-1,0])

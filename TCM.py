@@ -23,7 +23,7 @@ File_name = 'test.csv'
 
 
 RR = 0 # Dynamic TCM, defalut = 1, for static set it to 0
-Error_introduced = 1 # default = 0 To check the effect of modeling error set it to 1, 
+Error_introduced = 0 # default = 0 To check the effect of modeling error set it to 1, 
 
 limit_charge = 1 # 1 if charge in last charging period is less than charge required for priority task 0 otherwise
  # 1 if reccuring 0 otherwise
@@ -193,14 +193,21 @@ if File_Execution == False:
     Parameters = TCM_Algorithm_Initial_Conditions()
 else:
     Setting_df=pd.read_csv(File_name)
-    if 'TCM' not in Setting_df:
-        Setting_df['TCM'] = 0      
-    
-    for Exp_no in range(0, len(Setting_df) ): # len(Setting_df)
-        if Setting_df.loc[Exp_no,"TCM"] != 1 :  
-            print('Exp_no:' , Exp_no)
-            Parameters = TCM_Initial_Conditions(Exp_no)
-            break
+    if 'TCM' not in Setting_df or 'TCM_Static' not in Setting_df:
+        Setting_df['TCM'] = 0  
+        Setting_df['TCM_Static'] = 0 
+    if RR == 1:
+        for Exp_no in range(0, len(Setting_df) ): # len(Setting_df)
+            if Setting_df.loc[Exp_no,"TCM"] != 1 :  
+                print('Exp_no:' , Exp_no)
+                Parameters = TCM_Initial_Conditions(Exp_no)
+                break        
+    else:
+        for Exp_no in range(0, len(Setting_df) ): # len(Setting_df)
+            if Setting_df.loc[Exp_no,"TCM_Static"] != 1 :  
+                print('Exp_no:' , Exp_no)
+                Parameters = TCM_Initial_Conditions(Exp_no)
+                break
     # raise Exception('exit')
             
     
@@ -989,51 +996,51 @@ if File_Execution == True:
     Setting_df=pd.read_csv(File_name)
     Setting_df.loc[Exp_no,"Total_Tasks"] = Total_Tasks
     if RR == 0 :
-        Setting_df.loc[Exp_no,"Alg_Coeff_Var"] = Coeff_Var
-        Setting_df.loc[Exp_no,"Alg_Total_Downtime"] = Alg_Total_Downtime
-        Setting_df.loc[Exp_no,"Alg_Q_Battery_Weight"] = Q_Battery_Weight
-        Setting_df.loc[Exp_no,"Alg_q"] = q
-        Setting_df.loc[Exp_no,"Alg_total_obj_cost"] = Alg_total_obj_cost
-        Setting_df.loc[Exp_no,"Alg_obj1"] = Alg_obj1
-        Setting_df.loc[Exp_no,"Alg_obj2"] = Alg_obj2
-        Setting_df.loc[Exp_no,"Alg_Wt_obj2"] = (Alg_obj2 * Q_Battery_Weight)
-        Setting_df.loc[Exp_no,"Alg_run_time"] = Alg_run_time
-        Setting_df.loc[Exp_no,"Alg_energy_effectiveness"] = utilization/(utilization - wasteconsumed)
-        Setting_df.loc[Exp_no,"Alg_Static"] = 1
-        Setting_df.loc[Exp_no,"Alg_max_diff"] = max_diff
+        Setting_df.loc[Exp_no,"TCM_Static_Coeff_Var"] = Coeff_Var
+        Setting_df.loc[Exp_no,"TCM_Static_Total_Downtime"] = Alg_Total_Downtime
+        Setting_df.loc[Exp_no,"TCM_Static_Q_Battery_Weight"] = Q_Battery_Weight
+        Setting_df.loc[Exp_no,"TCM_Static_q"] = q
+        Setting_df.loc[Exp_no,"TCM_Static_total_obj_cost"] = Alg_total_obj_cost
+        Setting_df.loc[Exp_no,"TCM_Static_obj1"] = Alg_obj1
+        Setting_df.loc[Exp_no,"TCM_Static_obj2"] = Alg_obj2
+        Setting_df.loc[Exp_no,"TCM_Static_Wt_obj2"] = (Alg_obj2 * Q_Battery_Weight)
+        Setting_df.loc[Exp_no,"TCM_Static_run_time"] = Alg_run_time
+        Setting_df.loc[Exp_no,"TCM_Static_energy_effectiveness"] = utilization/(utilization - wasteconsumed)
+        Setting_df.loc[Exp_no,"TCM_Static"] = 1
+        Setting_df.loc[Exp_no,"TCM_Static_max_diff"] = max_diff
         Setting_df.loc[Exp_no,"Reccurance"] = RR
-        Setting_df.loc[Exp_no,"Alg_BD_C_Edod"] = BD_C_Edod
-        Setting_df.loc[Exp_no,"Alg_BD_C_Emax"] = BD_C_Emax
-        Setting_df.loc[Exp_no,"Alg_BD_C_Total"] = BD_C_Emax + BD_C_Edod 
-        Setting_df.loc[Exp_no,"Alg_TA_percentage"] = ((Total_Tasks - Alg_Total_Downtime) / Total_Tasks) * 100
-        Setting_df.loc[Exp_no,"TCM"] = 1
+        Setting_df.loc[Exp_no,"TCM_Static_BD_C_Edod"] = BD_C_Edod
+        Setting_df.loc[Exp_no,"TCM_Static_BD_C_Emax"] = BD_C_Emax
+        Setting_df.loc[Exp_no,"TCM_Static_BD_C_Total"] = BD_C_Emax + BD_C_Edod 
+        Setting_df.loc[Exp_no,"TCM_Static_TA_percentage"] = ((Total_Tasks - Alg_Total_Downtime) / Total_Tasks) * 100
+        Setting_df.loc[Exp_no,"TCM_Static"] = 1
     else:
-        Setting_df.loc[Exp_no,"R_Alg_Coeff_Var"] = Coeff_Var
-        Setting_df.loc[Exp_no,"R_Alg_Total_Downtime"] = Alg_Total_Downtime
-        Setting_df.loc[Exp_no,"R_Alg_Q_Battery_Weight"] = Q_Battery_Weight
-        Setting_df.loc[Exp_no,"R_Alg_q"] = q
-        Setting_df.loc[Exp_no,"R_Alg_total_obj_cost"] = Alg_total_obj_cost
-        Setting_df.loc[Exp_no,"R_Alg_obj1"] = Alg_obj1
-        Setting_df.loc[Exp_no,"R_Alg_obj2"] = Alg_obj2
-        Setting_df.loc[Exp_no,"R_Alg_Wt_obj2"] = (Alg_obj2 * Q_Battery_Weight)
-        Setting_df.loc[Exp_no,"R_Alg_run_time"] = Alg_run_time
-        Setting_df.loc[Exp_no,"R_Alg_energy_effectiveness"] = utilization/(utilization - wasteconsumed)
+        Setting_df.loc[Exp_no,"TCM_Coeff_Var"] = Coeff_Var
+        Setting_df.loc[Exp_no,"TCM_Total_Downtime"] = Alg_Total_Downtime
+        Setting_df.loc[Exp_no,"TCM_Q_Battery_Weight"] = Q_Battery_Weight
+        Setting_df.loc[Exp_no,"TCM_q"] = q
+        Setting_df.loc[Exp_no,"TCM_total_obj_cost"] = Alg_total_obj_cost
+        Setting_df.loc[Exp_no,"TCM_obj1"] = Alg_obj1
+        Setting_df.loc[Exp_no,"TCM_obj2"] = Alg_obj2
+        Setting_df.loc[Exp_no,"TCM_Wt_obj2"] = (Alg_obj2 * Q_Battery_Weight)
+        Setting_df.loc[Exp_no,"TCM_run_time"] = Alg_run_time
+        Setting_df.loc[Exp_no,"TCM_energy_effectiveness"] = utilization/(utilization - wasteconsumed)
         Setting_df.loc[Exp_no,"TCM"] = 1
-        Setting_df.loc[Exp_no,"R_Alg_max_diff"] = max_diff
-        Setting_df.loc[Exp_no,"R_Reccurance"] = RR
-        Setting_df.loc[Exp_no,"R_Alg_BD_C_Edod"] = BD_C_Edod
-        Setting_df.loc[Exp_no,"R_Alg_BD_C_Emax"] = BD_C_Emax
-        Setting_df.loc[Exp_no,"R_Alg_BD_C_Total"] = BD_C_Emax + BD_C_Edod    
-        Setting_df.loc[Exp_no,"R_Alg_TA_percentage"] = ((Total_Tasks - Alg_Total_Downtime) / Total_Tasks) * 100 
+        Setting_df.loc[Exp_no,"TCM_max_diff"] = max_diff
+        Setting_df.loc[Exp_no,"TCM_Reccurance"] = RR
+        Setting_df.loc[Exp_no,"TCM_BD_C_Edod"] = BD_C_Edod
+        Setting_df.loc[Exp_no,"TCM_BD_C_Emax"] = BD_C_Emax
+        Setting_df.loc[Exp_no,"TCM_BD_C_Total"] = BD_C_Emax + BD_C_Edod    
+        Setting_df.loc[Exp_no,"TCM_TA_percentage"] = ((Total_Tasks - Alg_Total_Downtime) / Total_Tasks) * 100 
         
         # Setting_df.loc[Exp_no,"R_Error"] = str(change)
         
     Setting_df.loc[Exp_no,"Total_Tasks"] = Total_Tasks
     Setting_df.to_csv(File_name, index = False)
         
-print("Alg_Total_Downtime: ", Alg_Total_Downtime)
+print("TCM_Total_Downtime: ", Alg_Total_Downtime)
 print(E_Balance_Zero)
-print("R_Alg_BD_C_Total: ", BD_C_Emax + BD_C_Edod  )
+print("TCM_BD_C_Total: ", BD_C_Emax + BD_C_Edod  )
 
 
 
