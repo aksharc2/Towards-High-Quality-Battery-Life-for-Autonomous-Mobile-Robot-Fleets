@@ -25,6 +25,7 @@ Whenever a script reads initial parameters from the CSV file and update the resu
 
 When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
 
+
 **MIN_DTC** is an MINLP model that considers maximizing the task allocation while ensuring that the energy level remains within the minimum (EDOD ) and maximum (Emax) battery threshold.
  
 **MIN_DT** is a simple MINLP model for task allocation and charging schedule that maximizes only Task Allocation.
@@ -33,4 +34,3 @@ When the `File_Execution = False`, the program reads the initial conditions from
 
 **TCM** is the proposed greedy algorithm.
 
-**NOTE:** If the experiment setup in the .csv files already have a solution, then the program will skip those experiments. To rerun the experiment change the respecive columns of the .csv file to 0 (deleting the respective column will cause the program to find the solution of all experimental setups in the file). 
