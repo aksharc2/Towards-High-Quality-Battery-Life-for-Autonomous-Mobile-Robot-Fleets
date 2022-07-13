@@ -13,7 +13,7 @@ Following are the important packages that are required to execute the TCM.py and
 | [math](https://pypi.org/project/python-math/) | `pip install python-math` |
 
 
-**Note:** to use gurobypy, a Gurobi license is needed. This license is free for academic use and can be obtained from this [website](https://www.gurobi.com/academia/academic-program-and-licenses/). Gurobi is only required for solving optimization problem in MINLP, MIN_DT and MIN_DTC.
+**Note:** to use gurobypy, a Gurobi license is needed. This license is free for academic use and can be obtained from this [website](https://www.gurobi.com/academia/academic-program-and-licenses/). Gurobi is only required for solving the baseline optimization problem in MINLP, MIN_DT and MIN_DTC.
 
 
 This repository contains the proposed TCM algorithm and other baselines MINLP, MID_DT and MIN_DTC explained in the paper. It also contains an `experimentSetup.py` file which creates initial parameters in random order for different experiment setups. 
