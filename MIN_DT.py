@@ -30,7 +30,7 @@ def TCM_Optimizer_Initial_Conditions():    # Parameters created
     W = 5   # Number of non-navigation tasks
     W_N = 2  # Number of navigation tasks
     div = 10 # Number of divisions while charging
-    q = 1 # importance to battery degradation
+    q = 0 # importance to battery degradation # || For MIN_DT q = 0
     # create sets
     Times = range(0, T)     # Set of periods
     Ex_Times = range(-1, T)     # Set of periods
@@ -40,9 +40,9 @@ def TCM_Optimizer_Initial_Conditions():    # Parameters created
     Navigation_Tasks=range(0,W_N) # Set of navigation paths
 
     # Battery Energy Levels
-    Ebat = 111.0     # Battery capacity (Wh)
-    Edod = 0.2 * Ebat   # Depth of Discharge
-    Emax = .9 * Ebat  # Preferred max charge level
+    Ebat = 111.0     # Battery capacity (Wh) 
+    Edod = 0 * Ebat   # Depth of Discharge # For MIN_DT Edod = 0
+    Emax = 1 * Ebat  # Preferred max charge level  # For MIN_DT Emax = 111
     
     Charging_time=0.75 # hrs to completely recharge the battery
     
@@ -126,11 +126,11 @@ def TCM_Initial_Conditions(Exp):     # Parameters called from file
     W_N = Setting_df.loc[Exp_no,"No_of_nav_task"]
     div = Setting_df.loc[Exp_no,"Period_divisions"]
     Charging_time = Setting_df.loc[Exp_no,"Charging_time"]     
-    q = Setting_df.loc[Exp_no,"q"]
+    q =  0 # Setting_df.loc[Exp_no,"q"] # For MIN_DT q = 0
     # Battery Energy Levels
     Ebat = Setting_df.loc[Exp_no,'Ebat']  # Battery capacity (Wh)
-    Edod = Setting_df.loc[Exp_no,'Edod']  # 0.2 * Ebat   # Depth of Discharge
-    Emax = Setting_df.loc[Exp_no,'Emax'] # 1 * Ebat  # Preferred max charge level
+    Edod = 0 # Setting_df.loc[Exp_no,'Edod']  # 0.2 * Ebat   # Depth of Discharge
+    Emax = Ebat # Setting_df.loc[Exp_no,'Emax'] # 1 * Ebat  # Preferred max charge level
 
     Locomotion_Power = Setting_df.loc[Exp_no,"Locomotion_Power"]
     Robot_Speed = Setting_df.loc[Exp_no,"Robot_Speed"]
@@ -610,7 +610,7 @@ def TCM_Optimization():
         Setting_df.loc[Exp_no,"Opt_Wt_obj2"] = ('%g' % W_obj2.getValue())
         Setting_df.loc[Exp_no,"Opt_run_time"] = Optimizer_Run_Time
         Setting_df.loc[Exp_no,"Opt_energy_effectiveness"] = Opt_Effectiveness
-        Setting_df.loc[Exp_no,"MINLP"] = 1
+        Setting_df.loc[Exp_no,"MIN_DT"] = 1
         Setting_df.loc[Exp_no,"Opt_BD_C_Edod"] = BD_C_Edod
         Setting_df.loc[Exp_no,"Opt_BD_C_Emax"] = BD_C_Emax
         Setting_df.to_csv(Execution_File_name, index = False)
@@ -621,13 +621,13 @@ if __name__ == '__main__':
         TCM_Optimization()    
     else:
         Setting_df=pd.read_csv(Execution_File_name)
-        if 'MINLP' not in Setting_df:
-            Setting_df['MINLP'] = 0 
+        if 'MIN_DT' not in Setting_df:
+            Setting_df['MIN_DT'] = 0 
         loop = len(Setting_df)  #int(Setting_df.iloc[-1,0])
         for Exp_no in range(0,loop):
             print('\n----------------------- Exp_no:' , Exp_no +1, '-----------------------\n')
-            if Setting_df.loc[Exp_no,"MINLP"] == 1:
-                print("MINLP has executed ",Exp_no +1," parameters")
+            if Setting_df.loc[Exp_no,"MIN_DT"] == 1:
+                print("MIN_DT has executed ",Exp_no +1," parameters")
             else:
                 Parameters = TCM_Initial_Conditions(Exp_no)
                 TCM_Optimization()

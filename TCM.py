@@ -13,7 +13,7 @@ import ast
 File_Execution = True # True if parameters to be collected from Setting.csv file.
 File_name = 'Experiment_Results.csv'
 
-q = 1 # importance to battery degradation. higher value is higher importance
+
 
 RR = 1 # print("------------------  Error_Introduced -----------------------") # Stable , Reccurance, Error_Introduced
 limit_charge = 1 # 1 if charge in last charging period is less than charge required for priority task 0 otherwise
@@ -33,6 +33,8 @@ def TCM_Algorithm_Initial_Conditions():    # Parameters created
     W_N = 7 # Number of navigation tasks
     div = 10 # Number of divisions while charging
     bis_option=1 # 0 obj2 penalize SOC dist from thresholds; 1 obj2 penalizes energy waste; 1 with q=0 only downtown but SOC between thresholds (baseline)
+    q = 1 # impotance to battery degradation. higher value is higher importance
+    
 
     # create sets
     Times = range(0, T)     # Set of periods
@@ -108,8 +110,7 @@ def TCM_Initial_Conditions(Exp_no):    # parameters collected from .csv file
     W = Setting_df.loc[Exp_no,"No_of_non_nav_tasks"]
     W_N = Setting_df.loc[Exp_no,"No_of_nav_task"]
     div = Setting_df.loc[Exp_no,"Period_divisions"]
-    bis_option = Setting_df.loc[Exp_no,"bis_option"]
-    
+    q  = Setting_df.loc[Exp_no,"q"]
     Charging_time = Setting_df.loc[Exp_no,"Charging_time"]     
 
     # Battery Energy Levels
@@ -155,7 +156,7 @@ def TCM_Initial_Conditions(Exp_no):    # parameters collected from .csv file
     TCM_Parameters = {'Period_duration': Period_duration, 'Working_Period': Working_Period, 'T': T, 'R': R, 'C': C, 'S': S, 'W': W, 'W_N': W_N, 
                   'div': div, 'bis_option': bis_option, 'Ebat':Ebat, 'Edod':Edod, 'Emax':Emax, 'Charging_time': Charging_time, 'E_Balance_Zero': E_Balance_Zero,
                   'Dist_change_max':Dist_change_max, 'Priority':Priority, 'Y':Y, 'Gamma_Matrix':Gamma_Matrix, 'Locomotion_Power':Locomotion_Power,
-                  'Sensing_Power':Sensing_Power, 'Robot_Speed':Robot_Speed, 'Max_distance':Max_distance, 'E_changeMax':E_changeMax, 'Exp_no':Exp_no , 'change':change}
+                  'Sensing_Power':Sensing_Power, 'Robot_Speed':Robot_Speed, 'Max_distance':Max_distance, 'E_changeMax':E_changeMax, 'Exp_no':Exp_no , 'change':change, 'q':q}
     
 
     
@@ -206,6 +207,7 @@ Robot_Speed = itemgetter('Robot_Speed')(Parameters)
 Max_distance = itemgetter('Max_distance')(Parameters)
 E_changeMax = itemgetter('E_changeMax')(Parameters)
 change = (itemgetter('change')(Parameters))
+q = int(itemgetter('q')(Parameters))
 Q_Battery_Weight=T*W*W_N/R  # Importance of Battery lifetime on cost function
 batDegWeight = Q_Battery_Weight * q
 
