@@ -1,4 +1,4 @@
-**T**ask and **C**harging schedule **M**anager is a combined task and charging scheduler.
+## **T**ask and **C**harging schedule **M**anager
 
 
 
