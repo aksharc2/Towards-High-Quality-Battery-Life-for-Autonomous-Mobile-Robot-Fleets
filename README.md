@@ -1,6 +1,5 @@
 **T**ask and **C**harging schedule **M**anager is a combined task and charging scheduler.
 
-This repository contains the proposed TCM algorithm, MINLP solver and other baselines explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. As per the requirements change the range of variables used in `experimentSetup.py` to genereate different experimental setups.
 
 
 Following are the important packages that are required to execute the TCM.py and MINLP.py files:
@@ -15,6 +14,11 @@ Following are the important packages that are required to execute the TCM.py and
 
 
 **Note:** to use gurobypy, Gurobi liscense is needed. This license is free for academic use, and can be obtained from there [website](https://www.gurobi.com/academia/academic-program-and-licenses/).
+
+
+This repository contains the proposed TCM algorithm, MINLP solver and other baselines explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. As per the requirements change the range of variables used in `experimentSetup.py` to genereate different experimental setups.
+
+
 
 To save the output of the TCM algorithm and MINLP in a CSV file set `File_Execution = True`, and the Experiment_Results.csv **must** be in the same folder. When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
 
