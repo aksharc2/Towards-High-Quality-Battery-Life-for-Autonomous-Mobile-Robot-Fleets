@@ -5,14 +5,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 import math
-import numpy as np
-import matplotlib.pyplot as plt
 import time
 from operator import itemgetter
 import pandas as pd
 import ast
-import rainflow
-from math import  exp
 import statistics
 import random 
 File_Execution = True # True if parameters to be collected from Setting.csv file.
