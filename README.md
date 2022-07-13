@@ -34,3 +34,9 @@ When the `File_Execution = False`, the program reads the initial conditions from
 
 **TCM** is the proposed greedy algorithm.
 
+### Testing TCM to modeling erros:
+To test TCM to modeling erros, 
+1. Set `Error_introduced` to `1` and provide a minimum (error_lower_limit) and maximum (error_upper_limit) modeling error percentage in `experimentSetup.py`. This will create a random error within the given range in each time period, and save it in the CSV file.
+2. In `TCM.py` set `Error_introduced` to `1`. By default TCM dynamically updates the solution in each time period, therefore it handels any modeling erros it encounters. 
+   - To check the effect of error on a `TCM_Static` baseline, in which the solution is obtained only once and does not take care of the modeling errors, set **RR = 0**.
+
