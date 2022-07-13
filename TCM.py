@@ -5,11 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 import math
-import time
 from operator import itemgetter
 import pandas as pd
 import ast
-import statistics
 import random 
 File_Execution = True # True if parameters to be collected from Setting.csv file.
 runtime_file = 'Experiments_Algorithm_Runtime.csv'
@@ -42,7 +40,6 @@ def TCM_Algorithm_Initial_Conditions():    # Parameters created
     bis_option=1 # 0 obj2 penalize SOC dist from thresholds; 1 obj2 penalizes energy waste; 1 with q=0 only downtown but SOC between thresholds (baseline)
 
     # create sets
-    Times = range(0, T)     # Set of periods
     Ex_Times = range(-1, T)
     Robots = range(0, R)    # Set of robots
     Non_Navigation_Tasks = range(0, W)  # Set of non-navigation tasks, e.g., face recognition
@@ -67,7 +64,6 @@ def TCM_Algorithm_Initial_Conditions():    # Parameters created
 
     error_lower_limit = 0 # lower limit of error in percentage 
     error_upper_limit = 60 # upper limit of error in percentage 
-    Error_type = 1 # -1 -> Over estimated || 0 -> Average Error || 1 -> Under Estimated
 
     
     modelling_error = {i: {k: 0 for k in Ex_Times} for i in Robots}
@@ -1009,7 +1005,6 @@ if File_Execution == True:
         Setting_df.loc[Exp_no,"TCM_Static_BD_C_Emax"] = BD_C_Emax
         Setting_df.loc[Exp_no,"TCM_Static_BD_C_Total"] = BD_C_Emax + BD_C_Edod 
         Setting_df.loc[Exp_no,"TCM_Static_TA_percentage"] = ((Total_Tasks - Alg_Total_Downtime) / Total_Tasks) * 100
-        Setting_df.loc[Exp_no,"TCM_Static"] = 1
     else:
         Setting_df.loc[Exp_no,"TCM_Coeff_Var"] = Coeff_Var
         Setting_df.loc[Exp_no,"TCM_Total_Downtime"] = Alg_Total_Downtime
