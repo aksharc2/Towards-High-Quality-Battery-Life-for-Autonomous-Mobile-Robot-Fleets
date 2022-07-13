@@ -16,7 +16,9 @@ Following are the important packages that are required to execute the TCM.py and
 **Note:** to use gurobypy, Gurobi liscense is needed. This license is free for academic use, and can be obtained from there [website](https://www.gurobi.com/academia/academic-program-and-licenses/).
 
 
-This repository contains the proposed TCM algorithm, MINLP solver and other baselines explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. As per the requirements change the range of variables used in `experimentSetup.py` to genereate different experimental setups.
+This repository contains the proposed TCM algorithm and other baselines MINLP, MID_DT and MIN_DTC explained in the paper. It also contains an `experimentSetup.py` file which creats initial parameters in random order for different experiment setups. 
+
+To create different scenarios change the range of variables used in `experimentSetup.py`. This will create a CSV file with multiple experimental setups. Use this file as an input to TCM and other baselines to get the solution of each scenario. 
 
 
 
