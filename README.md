@@ -25,7 +25,7 @@ To create different scenarios change the range of variables used in `experimentS
 ### Executing scripts with different test scenarios:
 1. Update the `File_name` variable with the CSV file name and set `File_Execution = True`. This will make the script to get the initial paramters from the CSV file and write the results to the CSV file. 
 2. When a script gets an experiment result and updates it to the CSV file, it also sets the respective execution value to 1 (as shown in  column CP for MINLP in the screenshot). This is done to avoid re-running the experiments that already have a solution. ![This is an image](https://github.com/aksharc2/Towards-High-Quality-Battery-Life-for-Autonomous-Mobile-Robot-Fleets/blob/main/MINLP.PNG)
-3. If there is a need to rerun all the experiment then delete the respective column or if there is a need to solve a particular experiment again then delete the respective cell value. 
+3. If there is a need to rerun all the experiment then delete the respective column or if there is a need to solve a particular experiment again then delete the respective cell value(eg., in the above figure if you want to rerun the entire experements for MINLP again then delete column CP).
 
 
 When the `File_Execution = False`, the program reads the initial conditions from `Initial_Conditions()` functions in TCM and other baselines. 
