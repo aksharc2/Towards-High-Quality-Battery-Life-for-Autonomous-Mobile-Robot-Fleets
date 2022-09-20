@@ -71,7 +71,7 @@ def TCM_Algorithm_Initial_Conditions():    # Parameters created
     if Error_introduced == 1:
         for i in Robots:
             for k in Ex_Times:
-                modelling_error[i][k] =  round(random.uniform(error_lower_limit, error_upper_limit), 2)
+                modelling_error[i][k] =  round(random.uniform(error_lower_limit, error_upper_limit), 2)/100
                 
                 
     # _______________________Gamma Matrix Calculation
