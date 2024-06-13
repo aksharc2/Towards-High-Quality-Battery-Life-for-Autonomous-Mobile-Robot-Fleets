@@ -52,18 +52,14 @@ To test TCM to modeling erros,
 
 **Citation**
 
-@INPROCEEDINGS {9935008,
-author = {A. Chavan and M. Brocanelli},
-booktitle = {2022 IEEE International Conference on Autonomic Computing and Self-Organizing Systems (ACSOS)},
-title = {Towards High-Quality Battery Life for Autonomous Mobile Robot Fleets},
-year = {2022},
-volume = {},
-issn = {},
-pages = {61-70},
-keywords = {greedy algorithms;schedules;navigation;computational modeling;charging stations;robustness;batteries},
-doi = {10.1109/ACSOS55765.2022.00024},
-url = {https://ieeexplore.ieee.org/abstract/document/9935008},
-publisher = {IEEE Computer Society},
-address = {Los Alamitos, CA, USA},
-month = {sep}
-}
+@INPROCEEDINGS{9935008,
+  author={Chavan, Akshar Shravan and Brocanelli, Marco},
+  booktitle={2022 IEEE International Conference on Autonomic Computing and Self-Organizing Systems (ACSOS)}, 
+  title={Towards High-Quality Battery Life for Autonomous Mobile Robot Fleets}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={61-70},
+  keywords={Greedy algorithms;Schedules;Navigation;Computational modeling;Charging stations;Robustness;Batteries;Autonomous Mobile Robots;Task and charge Scheduling;Battery Lifespan;Energy},
+  doi={10.1109/ACSOS55765.2022.00024}}
+
