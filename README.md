@@ -3,7 +3,7 @@
 **Abstract**
 Autonomous Mobile Robots (AMRs) rely on rechargeable batteries to execute several objective tasks during navigation. Previous research has focused on minimizing task downtime by coordinating task allocation and/or charge scheduling across multiple AMRs. However, they do not jointly ensure low task downtime and high-quality battery life.In this paper, we present TCM, a Task allocation and Charging Manager for AMR fleets. TCM allocates objective tasks to AMRs and schedules their charging times at the available charging stations for minimized task downtime and maximized AMR batteries’ quality of life. We formulate the TCM problem as an MINLP problem and propose a polynomial-time multi-period TCM greedy algorithm that periodically adapts its decisions for high robustness to energy modeling errors. We experimentally show that, compared to the MINLP implementation in Gurobi solver, the designed algorithm provides solutions with a performance ratio of 1.15 at a fraction of the execution time. Furthermore, compared to representative baselines that only focus on task downtime, TCM achieves similar task allocation results while providing much higher battery quality of life.
 
-[DOI: 10.1109/ACSOS55765.2022.00024](10.1109/ACSOS55765.2022.00024)
+[DOI: 10.1109/ACSOS55765.2022.00024](https://ieeexplore.ieee.org/abstract/document/9935008)
 
 Following are the important packages that are required to execute the TCM.py and MINLP.py files:
 |package | pip installation command | 
